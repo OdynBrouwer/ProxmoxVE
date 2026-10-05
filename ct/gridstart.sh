@@ -36,6 +36,20 @@ function update_script() {
   git pull
   npm install
   npm run build
+  # Prepare static files
+  mkdir -p dist/public/assets
+  cp dist/app.html dist/public/
+  cp -r dist/assets/. dist/public/assets/
+  cp dist/manifest.webmanifest dist/public/ 2>/dev/null || true
+  cp dist/sw.js dist/public/ 2>/dev/null || true
+  cp dist/workbox-*.js dist/public/ 2>/dev/null || true
+  cp dist/favicon.svg dist/public/ 2>/dev/null || true
+  cp dist/favicon.png dist/public/ 2>/dev/null || true
+  cp dist/apple-touch-icon.png dist/public/ 2>/dev/null || true
+  cp dist/pwa-192x192.png dist/public/ 2>/dev/null || true
+  cp dist/pwa-512x512.png dist/public/ 2>/dev/null || true
+  cp -r dist/fonts dist/public/fonts 2>/dev/null || true
+  cp dist/fonts.css dist/public/ 2>/dev/null || true
   systemctl restart gridstart
   msg_ok "Updated ${APP}"
   exit
