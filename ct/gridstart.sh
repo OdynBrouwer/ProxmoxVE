@@ -4,7 +4,7 @@
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/mblancolabs/gridstart
 
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
+source <(curl -fsSL https://raw.githubusercontent.com/OdynBrouwer/ProxmoxVE/main/misc/build.func)
 
 APP="GridStart"
 var_tags="${var_tags:-f1;dashboard}"
