@@ -4,7 +4,10 @@
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://github.com/mblancolabs/gridstart
 
-source <(curl -fsSL https://raw.githubusercontent.com/OdynBrouwer/ProxmoxVE/main/misc/build.func)
+# BELANGRIJK: vertel de engine dat de scripts in JOUW fork staan
+export COMMUNITY_SCRIPTS_URL="https://raw.githubusercontent.com/OdynBrouwer/ProxmoxVE/main"
+
+source <(curl -fsSL "${COMMUNITY_SCRIPTS_CORE_URL:-https://raw.githubusercontent.com/community-scripts/core/main}/core/build.func")
 
 APP="GridStart"
 var_tags="${var_tags:-f1;dashboard}"
@@ -14,10 +17,6 @@ var_disk="${var_disk:-8}"
 var_os="${var_os:-debian}"
 var_version="${var_version:-13}"
 var_unprivileged="${var_unprivileged:-1}"
-
-# BELANGRIJK: vertel build.func dat het installatiescript in JOUW repo staat
-var_install="${var_install:-gridstart-install}"
-var_install_url="${var_install_url:-https://raw.githubusercontent.com/OdynBrouwer/ProxmoxVE/main/install/${var_install}.sh}"
 
 header_info "$APP"
 variables
