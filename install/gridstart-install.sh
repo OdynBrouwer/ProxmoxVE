@@ -29,7 +29,7 @@ msg_ok "Cloned GridStart"
 msg_info "Creating .env File"
 CORS_ORIGIN="http://$(hostname -I | awk '{print $1}'):5000"
 cat <<EOF > /opt/gridstart/.env
-NODE_ENV=development
+NODE_ENV=production
 PORT=5000
 CORS_ORIGIN=${CORS_ORIGIN}
 CSRF_SECRET=$(openssl rand -hex 32)
@@ -44,6 +44,23 @@ msg_info "Building GridStart"
 $STD npm run build
 msg_ok "Built GridStart"
 
+msg_info "Preparing Static Files"
+cd /opt/gridstart
+mkdir -p dist/public/assets
+cp dist/app.html dist/public/
+cp -r dist/assets/. dist/public/assets/
+cp dist/manifest.webmanifest dist/public/ 2>/dev/null || true
+cp dist/sw.js dist/public/ 2>/dev/null || true
+cp dist/workbox-*.js dist/public/ 2>/dev/null || true
+cp dist/favicon.svg dist/public/ 2>/dev/null || true
+cp dist/favicon.png dist/public/ 2>/dev/null || true
+cp dist/apple-touch-icon.png dist/public/ 2>/dev/null || true
+cp dist/pwa-192x192.png dist/public/ 2>/dev/null || true
+cp dist/pwa-512x512.png dist/public/ 2>/dev/null || true
+cp -r dist/fonts dist/public/fonts 2>/dev/null || true
+cp dist/fonts.css dist/public/ 2>/dev/null || true
+msg_ok "Prepared Static Files"
+
 msg_info "Creating Service"
 cat <<EOF > /etc/systemd/system/gridstart.service
 [Unit]
@@ -54,7 +71,7 @@ After=network.target
 Type=simple
 User=root
 WorkingDirectory=/opt/gridstart
-ExecStart=/usr/bin/npm run dev
+ExecStart=/usr/bin/npm start
 Restart=on-failure
 RestartSec=5
 EnvironmentFile=/opt/gridstart/.env
