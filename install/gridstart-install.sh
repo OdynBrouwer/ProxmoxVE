@@ -22,7 +22,7 @@ $STD apt-get install -y nodejs
 msg_ok "Installed Node.js 24"
 
 msg_info "Cloning GridStart"
-git clone https://github.com/mblancolabs/gridstart.git /opt/gridstart
+git clone https://github.com/OdynBrouwer/gridstart.git /opt/gridstart
 cd /opt/gridstart
 msg_ok "Cloned GridStart"
 
