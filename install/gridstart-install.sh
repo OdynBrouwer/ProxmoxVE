@@ -26,6 +26,12 @@ git clone https://github.com/OdynBrouwer/gridstart.git /opt/gridstart
 cd /opt/gridstart
 msg_ok "Cloned GridStart"
 
+msg_info "Patching production route"
+cd /opt/gridstart
+# Voeg /app route toe voor de SPA
+sed -i 's|app.get("/\*", serveStatic({ root: "./dist/public" }));|app.get("/app", serveStatic({ path: "./dist/public/app.html" }));\napp.get("/*", serveStatic({ root: "./dist/public" }));|' server/production.ts
+msg_ok "Patched production route"
+
 msg_info "Creating .env File"
 CORS_ORIGIN="http://$(hostname -I | awk '{print $1}'):5000"
 cat <<EOF > /opt/gridstart/.env
