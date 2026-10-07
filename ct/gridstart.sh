@@ -33,7 +33,7 @@ function update_script() {
   fi
   msg_info "Updating ${APP}"
   cd /opt/gridstart
-  git pull
+  git pull origin main
   npm install
   npm run build
   # Prepare static files
