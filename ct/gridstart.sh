@@ -37,8 +37,14 @@ function update_script() {
   npm install
   npm run build
   # Prepare static files
+  rm -rf dist/public/assets
   mkdir -p dist/public/assets
   cp dist/app.html dist/public/
+  cp dist/index.html dist/public/
+  cp dist/landing.css dist/public/
+  cp dist/landing.js dist/public/
+  cp dist/gridstart-screenshot.png dist/public/ 2>/dev/null || true
+  cp dist/_headers dist/public/ 2>/dev/null || true
   cp -r dist/assets/. dist/public/assets/
   cp dist/manifest.webmanifest dist/public/ 2>/dev/null || true
   cp dist/sw.js dist/public/ 2>/dev/null || true
