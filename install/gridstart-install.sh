@@ -63,8 +63,13 @@ cp dist/favicon.png dist/public/ 2>/dev/null || true
 cp dist/apple-touch-icon.png dist/public/ 2>/dev/null || true
 cp dist/pwa-192x192.png dist/public/ 2>/dev/null || true
 cp dist/pwa-512x512.png dist/public/ 2>/dev/null || true
-cp -r dist/fonts dist/public/fonts 2>/dev/null || true
 cp dist/fonts.css dist/public/ 2>/dev/null || true
+cp -r dist/fonts dist/public/fonts 2>/dev/null || true
+cp dist/index.html dist/public/
+cp dist/landing.css dist/public/
+cp dist/landing.js dist/public/
+cp dist/gridstart-screenshot.png dist/public/ 2>/dev/null || true
+cp dist/_headers dist/public/ 2>/dev/null || true
 msg_ok "Prepared Static Files"
 
 msg_info "Creating Service"
